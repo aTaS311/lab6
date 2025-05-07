@@ -1,0 +1,22 @@
+import math
+n = int(input("n dəyərini daxil edin: "))
+A = []
+print("Massivin elementlərini daxil edin:")
+for i in range(n):
+    row = list(map(float, input(f"{i+1}-ci sətrin elementləri: ").split()))
+    A.append(row)
+for col in range(n):
+    product = 1
+    count = 0
+    for row in range(n):
+        if A[row][col] > 0:
+            product *= A[row][col]
+            count += 1
+    if count > 0:
+        geo_mean = product ** (1 / count)
+        A[col][col] = round(geo_mean, 3)  
+    else:
+        A[col][col] = 0  
+print("\nNəticə matrisi:")
+for row in A:
+    print('\t'.join(f"{elem:.3f}" for elem in row))
